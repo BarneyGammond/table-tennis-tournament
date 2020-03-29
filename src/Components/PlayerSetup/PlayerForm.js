@@ -1,16 +1,34 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Form, Button, Container} from 'react-bootstrap'
 
-export default () => {
+export default ({addPlayer}) => {
+
+    const [playerName,setPlayerName] = useState('')
+
+    const handleChange = e => {
+
+        setPlayerName(e.currentTarget.value)
+
+    }
+
+    const handleSubmit = e => {
+
+        e.preventDefault()
+
+        addPlayer(playerName)
+
+        setPlayerName('')
+
+    }
 
     return (
         <Container>
             <Form>
                 <Form.Group>
                     <Form.Label>Enter Names Here</Form.Label>
-                    <Form.Control></Form.Control>
+                    <Form.Control onChange={handleChange} value={playerName}></Form.Control>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button onClick={handleSubmit} variant="primary" type="submit">
                     Add Name
                 </Button>
             </Form>
