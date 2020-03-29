@@ -1,9 +1,9 @@
 import React ,{useState} from 'react'
 import PlayerForm from './PlayerForm'
 import PlayerList from  './PlayerList'
-import {Container} from 'react-bootstrap'
+import {Container, Button} from 'react-bootstrap'
 
-const PlayerSetup = () => {
+const PlayerSetup = ({handleSubmit}) => {
 
     //The player list is held in state here
 
@@ -21,6 +21,7 @@ const PlayerSetup = () => {
         <Container>
             <PlayerForm addPlayer={addPlayer} />
             <PlayerList players={playerList} />
+            <Button className="my-2" onClick={() => handleSubmit(playerList)}>Start Tournament</Button>
         </Container>
         
     )
