@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from './Components/Header'
-import PlayerSetup from './Components/PlayerSetup/PlayerSetup';
+import PlayerSetup from './Components/PlayerSetup';
 
 function App() {
   return (

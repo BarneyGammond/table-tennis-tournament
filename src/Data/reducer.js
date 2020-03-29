@@ -20,7 +20,7 @@ const addPlayers = (state,{playerList}) => {
     return {
 
         ...state,
-        Players: newPlayerList
+        players: newPlayerList
 
     }
 
@@ -32,7 +32,10 @@ const reducer = (state,action) => {
     switch(action.type) {
 
         case "ADD_PLAYERS": return addPlayers(state,action)
-        
+        default: return state
+
     }
 
 }
+
+export default reducer;
