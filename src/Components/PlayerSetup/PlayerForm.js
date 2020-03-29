@@ -13,6 +13,8 @@ export default ({addPlayer}) => {
 
     const handleSubmit = e => {
 
+        //Here the addPlayer function is called and the player Name is reset
+
         e.preventDefault()
 
         addPlayer(playerName)
