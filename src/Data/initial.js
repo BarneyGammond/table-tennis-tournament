@@ -1,6 +1,6 @@
 export default {
 
-    players: {},
+    players: [],
     rounds: {}
 
 }
