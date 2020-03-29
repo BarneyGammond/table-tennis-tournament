@@ -1,14 +1,11 @@
 import React from 'react'
-import {Container} from 'react-bootstrap'
 
-export default () => {
+export default () => (
 
-    return (
-        <Container>
+    <header>
 
-            <h1>Table Tennis Tournament</h1>
+        <h1>Table Tennis Tournament</h1>
 
-        </Container>
-    )
-
-}
+    </header>
+    
+)
