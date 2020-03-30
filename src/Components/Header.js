@@ -2,7 +2,7 @@ import React from 'react'
 
 export default () => (
 
-    <header>
+    <header className="mainHeader">
 
         <h1>Table Tennis Tournament</h1>
 
