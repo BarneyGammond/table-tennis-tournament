@@ -18,7 +18,7 @@ function App() {
         <PlayerSetup />
       </Route>
 
-      <Route exact path='/tournament' component={Tournament} />
+      <Route path='/tournament' component={Tournament} />
     </Router>
 
   )

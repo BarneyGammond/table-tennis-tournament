@@ -3,4 +3,19 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = ({rounds}) => ({rounds})
 
-export default connect(mapStateToProps)(Tournament);
+const mapDispatchToProps = dispatch => {
+
+    return {
+        
+        handleResult: (playerID,matchIndex,roundIndex) => {
+
+            dispatch({ type:"RESULT_ENTRY", playerID, matchIndex,roundIndex})
+
+        }
+
+    }
+
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Tournament);
+
