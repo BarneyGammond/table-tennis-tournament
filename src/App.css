@@ -8,12 +8,20 @@
 
     border: 1px darkblue solid;
     border-radius: 5px;
-    width: 250px
+    width: 200px;
 
 }
 
 .tournamentCard h4 {
 
     text-align: center
+
+}
+
+.tournamentWrapper.container {
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
 }
