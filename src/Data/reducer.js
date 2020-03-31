@@ -58,17 +58,25 @@ const shuffle = state => {
 
 const allocateMatches = (state) => {
 
+    //This checks if all the matches in the round have been played
+
+    if (!state.allMatchesPlayed) return {...state}
+
     let playerPosition = 0
     const players = state.players
-    let matches = []
+    let newRound = []
 
-    for (let i=0 ; i<4 ; i+=1) {
+    //Checks that the players have not been eliminated
+    
+    let activePlayers = players.filter(player => player.eliminated === false)
 
-        matches.push({
+    for (let i=0 ; i<activePlayers.length/2 ; i+=1) {
+
+        newRound.push({
 
             id: i+1,
-            p1: players[playerPosition],
-            p2: players[playerPosition+1],
+            p1: activePlayers[playerPosition],
+            p2: activePlayers[playerPosition+1],
             played: false,
             
         })
@@ -81,8 +89,10 @@ const allocateMatches = (state) => {
         ...state,
         rounds: [
             ...state.rounds,
-            matches
-        ]
+            newRound
+        ],
+        allMatchesPlayed: false,
+        currentRound: state.currentRound + 1
     }
 
 }
@@ -91,11 +101,7 @@ const updateResult = (state,{playerID,matchIndex,roundIndex}) => {
 
     //Below is the logic for changing the match played
 
-    console.log(state.rounds)
-
     let newRounds = [...state.rounds]
-
-    console.log(newRounds[roundIndex])
 
     newRounds[roundIndex][matchIndex].played = true
 
@@ -115,13 +121,27 @@ const updateResult = (state,{playerID,matchIndex,roundIndex}) => {
 
 }
 
+//Checks if all the matches in the round have been played
+
+const matchesPlayed = state => {
+
+    let round = state.rounds[state.currentRound - 1]
+
+    return round.find(match => !match.played) 
+        ? {...state}  
+        : {
+            ...state,
+            allMatchesPlayed : true
+        } 
+}
+
 
 const reducer = (state,action) => {
 
     switch(action.type) {
 
         case "ADD_PLAYERS": return allocateMatches(shuffle(addPlayers(state,action)))
-        case "RESULT_ENTRY": return updateResult(state,action) 
+        case "RESULT_ENTRY": return allocateMatches(matchesPlayed(updateResult(state,action)))
         default: return state
 
     }

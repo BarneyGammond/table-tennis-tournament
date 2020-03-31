@@ -1,6 +1,8 @@
 export default {
 
     players: [],
-    rounds: []
+    rounds: [],
+    allMatchesPlayed: true,
+    currentRound: 0,
 
 }
