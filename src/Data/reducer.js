@@ -12,6 +12,7 @@ const addPlayers = (state,{playerList}) => {
             wins: 0,
             pointsWon: 0,
             pointsConceded: 0,
+            eliminated: false
 
         }
 
@@ -20,7 +21,7 @@ const addPlayers = (state,{playerList}) => {
     return {
 
         ...state,
-        activePlayers: newPlayerList
+        players: newPlayerList
 
     }
 
@@ -30,7 +31,7 @@ const shuffle = state => {
 
     //I used a method called the Fisher-Yates shuffle to randomise this
 
-    let array = state.activePlayers
+    let array = state.players
 
     let length = array.length
     let placeholder = 0
@@ -49,7 +50,7 @@ const shuffle = state => {
     return {
 
         ...state,
-        activePlayers: array
+        players: array
 
     }
 
@@ -57,19 +58,27 @@ const shuffle = state => {
 
 const allocateMatches = (state) => {
 
+    //This checks if all the matches in the round have been played 
+    //or the tournament is finished
+
+    if (!state.allMatchesPlayed || state.tournamentComplete) return {...state}
+
     let playerPosition = 0
-    const players = state.activePlayers
-    let matches = []
+    const players = state.players
+    let newRound = []
 
-    for (let i=0 ; i<4 ; i+=1) {
+    //Checks that the players have not been eliminated
+    
+    let activePlayers = players.filter(player => player.eliminated === false)
 
-        matches.push({
+    for (let i=0 ; i<activePlayers.length/2 ; i+=1) {
+
+        newRound.push({
 
             id: i+1,
-            p1: players[playerPosition],
-            p2: players[playerPosition+1],
+            p1: activePlayers[playerPosition],
+            p2: activePlayers[playerPosition+1],
             played: false,
-            winner: null
             
         })
 
@@ -81,10 +90,51 @@ const allocateMatches = (state) => {
         ...state,
         rounds: [
             ...state.rounds,
-            matches
-        ]
+            newRound
+        ],
+        allMatchesPlayed: false,
+        currentRound: state.currentRound + 1
     }
 
+}
+
+const updateResult = (state,{playerID,matchIndex,roundIndex,final}) => {
+
+    //Below is the logic for changing the match played
+
+    let newRounds = [...state.rounds]
+
+    newRounds[roundIndex][matchIndex].played = true
+
+    //Below is the logic for changing the player eliminated
+
+    let index = state.players.findIndex(player => player.id === playerID)
+
+    let newPlayerList = [...state.players]
+
+    newPlayerList[index].eliminated = true
+
+    return {
+        ...state,
+        rounds: newRounds,
+        players: newPlayerList,
+        tournamentComplete: final
+    }
+
+}
+
+//Checks if all the matches in the round have been played
+
+const matchesPlayed = state => {
+
+    let round = state.rounds[state.currentRound - 1]
+
+    return round.find(match => !match.played) 
+        ? {...state}  
+        : {
+            ...state,
+            allMatchesPlayed : true
+        } 
 }
 
 
@@ -93,6 +143,7 @@ const reducer = (state,action) => {
     switch(action.type) {
 
         case "ADD_PLAYERS": return allocateMatches(shuffle(addPlayers(state,action)))
+        case "RESULT_ENTRY": return allocateMatches(matchesPlayed(updateResult(state,action)))
         default: return state
 
     }
