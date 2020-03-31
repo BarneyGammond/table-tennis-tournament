@@ -58,9 +58,10 @@ const shuffle = state => {
 
 const allocateMatches = (state) => {
 
-    //This checks if all the matches in the round have been played
+    //This checks if all the matches in the round have been played 
+    //or the tournament is finished
 
-    if (!state.allMatchesPlayed) return {...state}
+    if (!state.allMatchesPlayed || state.tournamentComplete) return {...state}
 
     let playerPosition = 0
     const players = state.players
@@ -97,7 +98,7 @@ const allocateMatches = (state) => {
 
 }
 
-const updateResult = (state,{playerID,matchIndex,roundIndex}) => {
+const updateResult = (state,{playerID,matchIndex,roundIndex,final}) => {
 
     //Below is the logic for changing the match played
 
@@ -117,6 +118,7 @@ const updateResult = (state,{playerID,matchIndex,roundIndex}) => {
         ...state,
         rounds: newRounds,
         players: newPlayerList,
+        tournamentComplete: final
     }
 
 }

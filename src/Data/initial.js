@@ -4,5 +4,6 @@ export default {
     rounds: [],
     allMatchesPlayed: true,
     currentRound: 0,
+    tournamentComplete: false
 
 }

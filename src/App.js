@@ -6,6 +6,7 @@ import history from './history'
 import Header from './Components/Header'
 import PlayerSetup from './Components/PlayerSetup';
 import Tournament from './Components/TournamentView/'
+import ResultsPage from './Components/ResultsView/ResultsPage'
 
 function App() {
   
@@ -19,6 +20,8 @@ function App() {
       </Route>
 
       <Route path='/tournament' component={Tournament} />
+
+      <Route exact path='/results' component={ResultsPage}/>  
     </Router>
 
   )

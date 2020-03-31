@@ -8,29 +8,36 @@ export default ({rounds,handleResult}) => {
 
         <Container className="tournamentWrapper">
 
-            { rounds.map((round,roundIndex) => (
+            { rounds.map((round,roundIndex) => {
 
-                <Container key={roundIndex} className="cardWrapper">
+                //checks if this is the final round
 
-                    { round.map((match,matchIndex) => (
+                const final = round.length === 1 ? true : false 
 
-                        <TournamentCard 
-                            onWinnerClick={handleResult}
-                            played={match.played}
-                            key={matchIndex}
-                            roundIndex={roundIndex}
-                            matchIndex={matchIndex}
-                            player1={ match.p1.name }
-                            player2={ match.p2.name }
-                            player1ID={match.p1.id}
-                            player2ID={match.p2.id}  
-                        />
+                return (
+                    <Container key={roundIndex} className="cardWrapper">
 
-                    ))}
+                        { round.map((match,matchIndex) => (
 
-                </Container>
+                            <TournamentCard 
+                                onWinnerClick={handleResult}
+                                played={match.played}
+                                key={matchIndex}
+                                roundIndex={roundIndex}
+                                matchIndex={matchIndex}
+                                player1={ match.p1.name }
+                                player2={ match.p2.name }
+                                player1ID={match.p1.id}
+                                player2ID={match.p2.id}
+                                final={final}  
+                            />
 
-            ))}
+                        ))}
+
+                    </Container>
+                )
+
+            })}
 
         </Container>
 
