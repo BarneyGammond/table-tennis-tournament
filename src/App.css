@@ -26,3 +26,14 @@
     margin: 20px 0;
 
 }
+
+.resultCard.container {
+    
+    box-sizing: border-box;
+    width: 500px;
+    text-align: center;
+    border: 2px solid purple;
+    border-radius: 5px;
+    padding: 10px 0;
+
+}
