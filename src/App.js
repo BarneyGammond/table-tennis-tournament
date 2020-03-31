@@ -12,7 +12,7 @@ function App() {
   
   return(
   
-    <Router history={ history }>
+    <Router history={history}>
       <Header />
 
       <Route exact path='/'>

@@ -2,19 +2,13 @@ import React from 'react'
 import ResultCard from './ResultCard'
 import {Container} from 'react-bootstrap'
 
-export default ({players}) => {
-
-    console.log(players);
-
-    //Finds the player which has not been eliminated
-
-    const winner = players[players.findIndex(player => !player.eliminated)]
+export default ({winner,runnerUp}) => {
 
     return (
 
         <Container>
             <ResultCard title='The Winner' playerName={winner.name} />
-            <ResultCard title='Runner-up' playerName='' />
+            <ResultCard title='Runner-up' playerName={runnerUp.name} />
         </Container>
 
     )

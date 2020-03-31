@@ -1,3 +1,4 @@
+import history from '../history'
 
 const addPlayers = (state,{playerList}) => {
 
@@ -67,11 +68,40 @@ const allocateMatches = (state) => {
     const players = state.players
     let newRound = []
 
-    //Checks that the players have not been eliminated
-    
     let activePlayers = players.filter(player => player.eliminated === false)
 
-    for (let i=0 ; i<activePlayers.length/2 ; i+=1) {
+    let x = 2
+    let y = 0
+    let result = 0
+
+    let findExcess = (num) => {
+    
+        let next = () => {
+            y = x
+            x *= 2
+            findExcess(num)
+        }
+        
+        let excess = () => {
+            return !(num - x) ? 0 : num - y
+        }
+    
+        num > x ? next() : result = excess()
+
+        return result
+    
+    }
+
+    let qualifiers = findExcess(activePlayers.length)
+
+    console.log(`the number of active players is ${activePlayers.length}`)
+    console.log(`the excess result is ${qualifiers}`)
+
+    //Checks that the players have not been eliminated
+
+    const numOfMatches = qualifiers ? qualifiers : activePlayers.length/2
+
+    for (let i=0 ; i<numOfMatches ; i+=1) {
 
         newRound.push({
 
@@ -86,6 +116,8 @@ const allocateMatches = (state) => {
 
     }
 
+    console.log(newRound)
+
     return {
         ...state,
         rounds: [
@@ -98,13 +130,15 @@ const allocateMatches = (state) => {
 
 }
 
-const updateResult = (state,{playerID,matchIndex,roundIndex,final}) => {
+const updateResult = (state,{playerID,matchIndex,roundIndex}) => {
 
     //Below is the logic for changing the match played
 
     let newRounds = [...state.rounds]
 
     newRounds[roundIndex][matchIndex].played = true
+
+    newRounds[roundIndex][matchIndex].winner = playerID
 
     //Below is the logic for changing the player eliminated
 
@@ -113,6 +147,12 @@ const updateResult = (state,{playerID,matchIndex,roundIndex,final}) => {
     let newPlayerList = [...state.players]
 
     newPlayerList[index].eliminated = true
+
+    //Below is to check if that was the last game
+
+    let checkElims = newPlayerList.filter(player => !player.eliminated).length
+
+    let final = checkElims === 1
 
     return {
         ...state,
@@ -123,9 +163,9 @@ const updateResult = (state,{playerID,matchIndex,roundIndex,final}) => {
 
 }
 
-//Checks if all the matches in the round have been played
-
 const matchesPlayed = state => {
+
+    //Checks if all the matches in the round have been played
 
     let round = state.rounds[state.currentRound - 1]
 
@@ -137,13 +177,45 @@ const matchesPlayed = state => {
         } 
 }
 
+const finalResults = state => {
+
+    let {tournamentComplete,rounds,players} = state;
+
+    let tournamentResults = () => {
+
+        history.push('./results')
+
+        //Identifies the final from the rounds array
+
+        const final = (rounds.slice(-1)[0])[0]
+
+        const winnerID = final.winner
+
+        //Identifies the losers id based on the winners id
+
+        let loserID = final.p1.id === winnerID ? final.p2.id : final.p1.id
+
+        return {
+            ...state,
+            winner: players.find(player => player.id === winnerID),
+            runnerUp : players.find(player => player.id === loserID)
+        }
+
+    }
+
+    return tournamentComplete ? tournamentResults() : state
+
+}
+
 
 const reducer = (state,action) => {
 
     switch(action.type) {
 
         case "ADD_PLAYERS": return allocateMatches(shuffle(addPlayers(state,action)))
-        case "RESULT_ENTRY": return allocateMatches(matchesPlayed(updateResult(state,action)))
+        case "RESULT_ENTRY": return (
+            finalResults(allocateMatches(matchesPlayed(updateResult(state,action))))
+        )
         default: return state
 
     }
