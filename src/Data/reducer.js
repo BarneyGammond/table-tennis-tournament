@@ -121,11 +121,10 @@ const allocateMatches = (state) => {
     return {
         ...state,
         rounds: [
+            newRound,
             ...state.rounds,
-            newRound
         ],
         allMatchesPlayed: false,
-        currentRound: state.currentRound + 1
     }
 
 }
@@ -167,7 +166,7 @@ const matchesPlayed = state => {
 
     //Checks if all the matches in the round have been played
 
-    let round = state.rounds[state.currentRound - 1]
+    let round = state.rounds[0]
 
     return round.find(match => !match.played) 
         ? {...state}  
