@@ -6,13 +6,13 @@ import history from './history'
 import Header from './Components/Header'
 import PlayerSetup from './Components/PlayerSetup';
 import Tournament from './Components/TournamentView/'
-import ResultsPage from './Components/ResultsView/ResultsPage'
+import ResultsPage from './Components/ResultsView/'
 
 function App() {
   
   return(
   
-    <Router history={ history }>
+    <Router history={history}>
       <Header />
 
       <Route exact path='/'>

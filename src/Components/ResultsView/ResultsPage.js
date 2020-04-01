@@ -1,11 +1,15 @@
 import React from 'react'
-import Winner from './Winner'
+import ResultCard from './ResultCard'
+import {Container} from 'react-bootstrap'
 
-export default () => {
+export default ({winner,runnerUp}) => {
 
     return (
 
-        <Winner />
+        <Container>
+            <ResultCard title='The Winner' playerName={winner.name} />
+            <ResultCard title='Runner-up' playerName={runnerUp.name} />
+        </Container>
 
     )
 

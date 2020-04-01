@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Form, Button, Container} from 'react-bootstrap'
+import {Form, Button, Container, Row} from 'react-bootstrap'
 
 export default ({addPlayer}) => {
 
@@ -24,15 +24,20 @@ export default ({addPlayer}) => {
     }
 
     return (
-        <Container>
+        <Container className="my-2">
             <Form>
                 <Form.Group>
                     <Form.Label>Enter Names Here</Form.Label>
                     <Form.Control onChange={handleChange} value={playerName}></Form.Control>
                 </Form.Group>
-                <Button onClick={handleSubmit} variant="primary" type="submit">
-                    Add Name
-                </Button>
+                <Row className="justify-content-center">
+                    <Button 
+                        onClick={handleSubmit} 
+                        variant="primary" 
+                        type="submit"
+                        >Add Name
+                    </Button>
+                </Row>
             </Form>
         </Container>
         
