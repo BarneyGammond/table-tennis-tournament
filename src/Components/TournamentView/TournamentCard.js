@@ -10,7 +10,6 @@ export default ({
     matchIndex,
     roundIndex,
     played,
-    final
 }) => {
 
     const handleClick = (playerNumber) => {
@@ -21,7 +20,7 @@ export default ({
 
         return played 
             ? null
-            : onWinnerClick(playerID,matchIndex,roundIndex,final)
+            : onWinnerClick(playerID,matchIndex,roundIndex)
 
     }
 

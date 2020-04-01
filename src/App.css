@@ -4,17 +4,25 @@
 
 }
 
+.tournamentWrapper.container {
+
+    margin-top: 50px
+
+}
+
 .tournamentCard.container {
 
     border: 1px darkblue solid;
     border-radius: 5px;
     width: 200px;
+    margin-bottom: 20px
 
 }
 
 .tournamentCard h4 {
 
-    text-align: center
+    text-align: center;
+    margin: 0;
 
 }
 
@@ -23,7 +31,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin: 20px 0;
+    margin: 20px 0 0;
 
 }
 
@@ -35,5 +43,23 @@
     border: 2px solid purple;
     border-radius: 5px;
     padding: 10px 0;
+
+}
+
+.playerListName {
+
+    width: 30%;
+    display: block;
+    text-align: center;
+    margin: 5px 1.5%;
+
+}
+
+.playerList {
+
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px 0;
 
 }

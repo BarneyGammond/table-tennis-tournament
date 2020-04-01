@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, ListGroup} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 
 export default ({players}) => {
 
@@ -7,15 +7,15 @@ export default ({players}) => {
 
         <Container>
 
-            <ListGroup>
+            <ul className="playerList">
 
                 { players.map((player,i) => (
 
-                    <ListGroup.Item key={i}>{player}</ListGroup.Item>
+                    <li className="playerListName" key={i}><h4>{player}</h4></li>
 
                 ))}
 
-            </ListGroup>
+            </ul>
 
         </Container>
 
