@@ -1,40 +1,46 @@
 import React from 'react'
-import TournamentCard from './TournamentCard'
+import TournamentRound from './TournamentRound'
 import {Container} from 'react-bootstrap'
 
-export default ({rounds,handleResult}) => {
+export default ({rounds,handleResult,players}) => {
+
+    const playerCount = players.length
 
     return (
 
         <Container className="tournamentWrapper">
 
-            { rounds.map((round,roundIndex) => {
+            { rounds.map((round,roundIndex) => { 
 
-                //checks if this is the final round
+                const matchNumber = round.length
+                let roundTitle = `Round of ${matchNumber*2}`
 
-                const final = round.length === 1 ? true : false 
+                if (matchNumber !== playerCount/2 && roundIndex === rounds.length - 1) {
+
+                    roundTitle = 'Qualifiers'
+
+                } else if (matchNumber === 4) {
+
+                    roundTitle = 'Quarter-finals'
+
+                } else if (matchNumber === 2) {
+
+                    roundTitle = 'Semi-finals'
+
+                } else if (matchNumber === 1) {
+
+                    roundTitle = 'Final'    
+
+                }
 
                 return (
-                    <Container key={roundIndex} className="cardWrapper">
-
-                        { round.map((match,matchIndex) => (
-
-                            <TournamentCard 
-                                onWinnerClick={handleResult}
-                                played={match.played}
-                                key={matchIndex}
-                                roundIndex={roundIndex}
-                                matchIndex={matchIndex}
-                                player1={ match.p1.name }
-                                player2={ match.p2.name }
-                                player1ID={match.p1.id}
-                                player2ID={match.p2.id}
-                                final={final}  
-                            />
-
-                        ))}
-
-                    </Container>
+                    <TournamentRound
+                        key={roundIndex} 
+                        round={round} 
+                        handleResult={handleResult} 
+                        roundIndex={roundIndex}
+                        roundTitle={roundTitle}  
+                    />
                 )
 
             })}

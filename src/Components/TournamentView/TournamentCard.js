@@ -16,12 +16,13 @@ export default ({
 
         //This ensure the losers id is passed on
 
-        const playerID = playerNumber === 1 ? player2ID : player1ID
+        const loserID = playerNumber === 1 ? player2ID : player1ID
+        const winnerID = playerNumber === 1 ? player1ID : player2ID
 
         return played 
             ? null
-            : onWinnerClick(playerID,matchIndex,roundIndex)
-
+            : onWinnerClick(loserID,winnerID,matchIndex,roundIndex)
+            
     }
 
     return (
