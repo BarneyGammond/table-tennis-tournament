@@ -1,15 +1,15 @@
 import Tournament from './Tournament'
 import { connect } from 'react-redux'
 
-const mapStateToProps = ({rounds}) => ({rounds})
+const mapStateToProps = ({rounds,players}) => ({rounds,players})
 
 const mapDispatchToProps = dispatch => {
 
     return {
         
-        handleResult: (playerID,matchIndex,roundIndex) => {
+        handleResult: (loserID,winnerID,matchIndex,roundIndex) => {
 
-            dispatch({ type:"RESULT_ENTRY", playerID, matchIndex,roundIndex})
+            dispatch({ type:"RESULT_ENTRY", loserID, winnerID, matchIndex,roundIndex})
 
         }
 

@@ -129,7 +129,7 @@ const allocateMatches = (state) => {
 
 }
 
-const updateResult = (state,{playerID,matchIndex,roundIndex}) => {
+const updateResult = (state,{loserID,winnerID,matchIndex,roundIndex}) => {
 
     //Below is the logic for changing the match played
 
@@ -137,11 +137,11 @@ const updateResult = (state,{playerID,matchIndex,roundIndex}) => {
 
     newRounds[roundIndex][matchIndex].played = true
 
-    newRounds[roundIndex][matchIndex].winner = playerID
+    newRounds[roundIndex][matchIndex].winner = winnerID
 
     //Below is the logic for changing the player eliminated
 
-    let index = state.players.findIndex(player => player.id === playerID)
+    let index = state.players.findIndex(player => player.id === loserID)
 
     let newPlayerList = [...state.players]
 
@@ -186,7 +186,9 @@ const finalResults = state => {
 
         //Identifies the final from the rounds array
 
-        const final = (rounds.slice(-1)[0])[0]
+        const final = rounds[0][0]
+
+        console.log(final)
 
         const winnerID = final.winner
 
