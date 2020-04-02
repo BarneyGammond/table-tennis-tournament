@@ -116,8 +116,6 @@ const allocateMatches = (state) => {
 
     }
 
-    console.log(newRound)
-
     return {
         ...state,
         rounds: [
@@ -129,23 +127,64 @@ const allocateMatches = (state) => {
 
 }
 
-const updateResult = (state,{loserID,winnerID,matchIndex,roundIndex}) => {
+const updateResult = (state,{matchIndex,roundIndex,p1Score,p2Score}) => {
 
     //Below is the logic for changing the match played
 
     let newRounds = [...state.rounds]
 
-    newRounds[roundIndex][matchIndex].played = true
+    newRounds[roundIndex][matchIndex] = {
+        ...newRounds[roundIndex][matchIndex],
+        played: true,
+        p1Score,
+        p2Score
+    }
+
+   /*  newRounds[roundIndex][matchIndex].played = true
 
     newRounds[roundIndex][matchIndex].winner = winnerID
 
+    newRounds[roundIndex][matchIndex].p1Score = p1Score */
     //Below is the logic for changing the player eliminated
 
-    let index = state.players.findIndex(player => player.id === loserID)
+    let loserIndex = (p1Score < p2Score 
+        ? state.players.findIndex(player => 
+            player.id === newRounds[roundIndex][matchIndex].p1.id
+        )
+        : state.players.findIndex(player => 
+            player.id === newRounds[roundIndex][matchIndex].p2.id
+        )
+    )
+
+    let winnerIndex = (p1Score > p2Score 
+        ? state.players.findIndex(player => 
+            player.id === newRounds[roundIndex][matchIndex].p1.id
+        )
+        : state.players.findIndex(player => 
+            player.id === newRounds[roundIndex][matchIndex].p2.id
+        )
+    )
+    
+    console.log(`Player 1 scored ${p1Score} points`)
+    console.log(`Player 2 scored ${p2Score} points`)
+    console.log(`The winner index is ${winnerIndex}`)
+    console.log(`The loser index is ${loserIndex}`)
+    
 
     let newPlayerList = [...state.players]
 
-    newPlayerList[index].eliminated = true
+    newPlayerList[loserIndex] = {
+        ...newPlayerList[loserIndex],
+        eliminated: true,
+        pointsWon: newPlayerList[winnerIndex].pointsWon + p1Score < p2Score ? p1Score : p2Score,
+        pointsConceded: newPlayerList[winnerIndex].pointsConceded + p1Score > p2Score ? p1Score : p2Score
+    }
+    newPlayerList[winnerIndex] = {
+        ...newPlayerList[winnerIndex],
+        wins: newPlayerList[winnerIndex].wins + 1,
+        pointsWon: newPlayerList[winnerIndex].pointsWon + p1Score > p2Score ? p1Score : p2Score,
+        pointsConceded: newPlayerList[winnerIndex].pointsConceded + p1Score < p2Score ? p1Score : p2Score
+    }
 
     //Below is to check if that was the last game
 
@@ -188,13 +227,10 @@ const finalResults = state => {
 
         const final = rounds[0][0]
 
-        console.log(final)
+        const winnerID = final.p1Score > final.p2Score ? final.p1.id : final.p2.id
+        const loserID = final.p1Score < final.p2Score ? final.p1.id : final.p2.id
 
-        const winnerID = final.winner
-
-        //Identifies the losers id based on the winners id
-
-        let loserID = final.p1.id === winnerID ? final.p2.id : final.p1.id
+        //Identifies the losers id based on the winners i
 
         return {
             ...state,

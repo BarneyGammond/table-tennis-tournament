@@ -7,9 +7,9 @@ const mapDispatchToProps = dispatch => {
 
     return {
         
-        handleResult: (loserID,winnerID,matchIndex,roundIndex) => {
+        handleResult: (matchIndex,roundIndex,p1Score,p2Score) => {
 
-            dispatch({ type:"RESULT_ENTRY", loserID, winnerID, matchIndex,roundIndex})
+            dispatch({ type:"RESULT_ENTRY", matchIndex,roundIndex,p1Score, p2Score})
 
         }
 
