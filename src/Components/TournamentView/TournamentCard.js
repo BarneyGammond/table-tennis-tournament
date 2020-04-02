@@ -1,5 +1,6 @@
-import React from 'react'
+import React , {useState} from 'react'
 import {Container} from 'react-bootstrap'
+import ScoreInput from './ScoreInput'
 
 export default ({
     onWinnerClick,
@@ -12,22 +13,28 @@ export default ({
     played,
 }) => {
 
+    const [scoreDisplay,setScoreDisplay] = useState('none')
+
     const handleClick = (playerNumber) => {
+
+        setScoreDisplay('block')
 
         //This ensure the losers id is passed on
 
-        const loserID = playerNumber === 1 ? player2ID : player1ID
+        /* const loserID = playerNumber === 1 ? player2ID : player1ID
         const winnerID = playerNumber === 1 ? player1ID : player2ID
 
         return played 
             ? null
-            : onWinnerClick(loserID,winnerID,matchIndex,roundIndex)
+            : onWinnerClick(loserID,winnerID,matchIndex,roundIndex) */
             
     }
 
     return (
 
-        <Container className="tournamentCard" style={played ? {opacity: 0.5} : null}>
+        <>
+
+        <Container className="tournamentCard" style={played ? {opacity: 0.75} : null}>
 
             {/* On click the opposite players id is handed up as the function looks
             to receive the player to eliminate*/}
@@ -39,6 +46,14 @@ export default ({
             <h4 onClick={() => handleClick(2)}>{player2}</h4>
 
         </Container>
+
+        <ScoreInput 
+            p1Name={player1} 
+            p2Name={player2} 
+            display={scoreDisplay} 
+        />
+
+        </>
 
     )
 
