@@ -6,8 +6,6 @@ export default ({
     onWinnerClick,
     player1,
     player2,
-    player1ID,
-    player2ID,
     matchIndex,
     roundIndex,
     played,
@@ -23,12 +21,9 @@ export default ({
 
     const submitScore = (p1Score,p2Score) => {
 
-        let winner = p1Score > p2Score ? player1ID : player2ID
-        let loser = p1Score < p2Score ? player1ID : player2ID
-
         setScoreDisplay('none')
 
-        return onWinnerClick(loser,winner,matchIndex,roundIndex)
+        return onWinnerClick(matchIndex,roundIndex, p1Score, p2Score)
 
     }
 
@@ -36,7 +31,7 @@ export default ({
 
         <>
 
-        <Container onClick={handleClick} className="tournamentCard" style={played ? {opacity: 0.75} : null}>
+        <Container onClick={handleClick} className="tournamentCard" style={played ? {opacity: 0.5} : null}>
 
             {/* On click the opposite players id is handed up as the function looks
             to receive the player to eliminate*/}

@@ -14,11 +14,13 @@ export default ({p1Name,p2Name,display,submitScore}) => {
 
     const handleChange = (e,player) => {
 
-        player === 'p1' ? setp1Score(e.currentTarget.value)
-            : setp2Score(e.currentTarget.value)
+        let score = e.currentTarget.valueAsNumber
 
-        console.log(p1Score);
-        console.log(p2Score)
+        player === 'p1' ? setp1Score(score)
+            : setp2Score(score)
+
+        console.log(score);
+        console.log(score)
 
     }
 
@@ -44,7 +46,7 @@ export default ({p1Name,p2Name,display,submitScore}) => {
                     </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label className="text-light">>{p2Name} Score</Form.Label>
+                    <Form.Label className="text-light">{p2Name} Score</Form.Label>
                     <Form.Control 
                         onChange={(e) => handleChange(e,'p2')}
                         value={p2Score}

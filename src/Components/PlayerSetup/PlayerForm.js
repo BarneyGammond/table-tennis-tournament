@@ -24,7 +24,7 @@ export default ({addPlayer}) => {
     }
 
     return (
-        <Container className="my-2">
+        <Container className="playerInput my-2">
             <Form>
                 <Form.Group>
                     <Form.Label>Enter Names Here</Form.Label>

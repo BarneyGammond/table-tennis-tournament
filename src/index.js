@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import initial from './Data/initial'
 import reducer from './Data/reducer'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import './fonts/Quicksand-Medium.ttf'
+import './fonts/Quicksand-Regular.ttf'
+import './fonts/Signika-Regular.ttf'
+import './fonts/Signika-SemiBold.ttf'
+
 
 const store = createStore(
   reducer, 

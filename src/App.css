@@ -1,3 +1,6 @@
+@import './Styling/base.css';
+@import './Styling/forms.css';
+
 .mainHeader h1 {
 
   text-align: center
@@ -62,4 +65,15 @@
     flex-wrap: wrap;
     margin: 15px 0;
 
+}
+
+body {
+    background-color: #011627;
+}
+
+header {
+    background-color: #FDFFFC;
+    font-family: 'Signika-SemiBold', sans-serif;
+    text-transform: uppercase;
+    padding: 30px 0;
 }

@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Quicksand-Medium';
+    src: local('Quicksand-Medium'), url(../fonts/Quicksand-Medium.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Signika-SemiBold';
+    src: local('Signika-SemiBold'), url(../fonts/Signika-SemiBold.ttf) format('truetype');
+}
+
+label {
+
+    font-family: Quicksand-medium;
+    color: #2EC4B6;
+
+}
