@@ -1,0 +1,27 @@
+.tournamentWrapper.container {
+
+    margin-top: 50px
+
+}
+
+.tournamentWrapper h3 {
+    text-align: center;
+    margin: 0 0 40px;
+}
+
+.tournamentCard.container {
+
+    background-color: #FDFFFC;
+    border-radius: 1px;
+    width: 200px;
+    margin-bottom: 20px;
+    padding: 10px 5px;
+
+}
+
+.tournamentCard h4 {
+
+    text-align: center;
+    margin: 5px 0;
+
+}

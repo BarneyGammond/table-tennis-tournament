@@ -5,8 +5,6 @@ export default ({p1Name,p2Name,display,submitScore}) => {
 
     let styling = {
         display: display,
-        position: 'absolute',
-        backgroundColor: 'rgba(46,46,49,0.9)'
     }
 
     let [p1Score,setp1Score] = useState(0)
@@ -33,7 +31,7 @@ export default ({p1Name,p2Name,display,submitScore}) => {
     }
 
     return (
-        <Container style={styling}>
+        <Container className='scoreForm' style={styling}>
 
             <Form>
             

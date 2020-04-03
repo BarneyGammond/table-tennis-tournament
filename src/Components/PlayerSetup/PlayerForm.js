@@ -17,7 +17,7 @@ export default ({addPlayer}) => {
 
         e.preventDefault()
 
-        addPlayer(playerName)
+        if (playerName) addPlayer(playerName)
 
         setPlayerName('')
 

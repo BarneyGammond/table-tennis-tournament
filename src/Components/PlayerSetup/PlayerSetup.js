@@ -22,7 +22,10 @@ const PlayerSetup = ({handleSubmit}) => {
             <PlayerForm addPlayer={addPlayer} />
             <PlayerList players={playerList} />
             <Row className="justify-content-center">
-                <Button onClick={() => handleSubmit(playerList)}>Start Tournament</Button>
+                { playerList.length >= 2 
+                    ? <Button onClick={() => handleSubmit(playerList)}>Start Tournament</Button>
+                    : null
+                }
             </Row>
         </Container>
         
