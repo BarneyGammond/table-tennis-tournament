@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/table-tennis-tournament/static/css/main.a03d2a5e.chunk.css",
+    "main.js": "/table-tennis-tournament/static/js/main.0b95ac78.chunk.js",
+    "main.js.map": "/table-tennis-tournament/static/js/main.0b95ac78.chunk.js.map",
+    "runtime-main.js": "/table-tennis-tournament/static/js/runtime-main.00f4aefc.js",
+    "runtime-main.js.map": "/table-tennis-tournament/static/js/runtime-main.00f4aefc.js.map",
+    "static/css/2.de424728.chunk.css": "/table-tennis-tournament/static/css/2.de424728.chunk.css",
+    "static/js/2.fc8bdc1d.chunk.js": "/table-tennis-tournament/static/js/2.fc8bdc1d.chunk.js",
+    "static/js/2.fc8bdc1d.chunk.js.map": "/table-tennis-tournament/static/js/2.fc8bdc1d.chunk.js.map",
+    "index.html": "/table-tennis-tournament/index.html",
+    "precache-manifest.bf315546f7d41e88b9f7fedeb58d404a.js": "/table-tennis-tournament/precache-manifest.bf315546f7d41e88b9f7fedeb58d404a.js",
+    "service-worker.js": "/table-tennis-tournament/service-worker.js",
+    "static/css/2.de424728.chunk.css.map": "/table-tennis-tournament/static/css/2.de424728.chunk.css.map",
+    "static/css/main.a03d2a5e.chunk.css.map": "/table-tennis-tournament/static/css/main.a03d2a5e.chunk.css.map",
+    "static/js/2.fc8bdc1d.chunk.js.LICENSE.txt": "/table-tennis-tournament/static/js/2.fc8bdc1d.chunk.js.LICENSE.txt",
+    "static/media/Quicksand-Medium.ttf": "/table-tennis-tournament/static/media/Quicksand-Medium.75365efd.ttf",
+    "static/media/Quicksand-Regular.ttf": "/table-tennis-tournament/static/media/Quicksand-Regular.316c2321.ttf",
+    "static/media/Signika-Regular.ttf": "/table-tennis-tournament/static/media/Signika-Regular.ba0080fa.ttf",
+    "static/media/Signika-SemiBold.ttf": "/table-tennis-tournament/static/media/Signika-SemiBold.b355f4bd.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.00f4aefc.js",
+    "static/css/2.de424728.chunk.css",
+    "static/js/2.fc8bdc1d.chunk.js",
+    "static/css/main.a03d2a5e.chunk.css",
+    "static/js/main.0b95ac78.chunk.js"
+  ]
+}
