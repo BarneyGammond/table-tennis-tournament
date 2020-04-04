@@ -2,11 +2,22 @@
 @import './Styling/forms.css';
 @import './Styling/playerList.css';
 @import './Styling/tournamentView.css';
+@import './Styling/results.css';
 
 .mainHeader h1 {
 
   text-align: center
 
+}
+
+.mainHeader a  {
+
+    color:#011627
+    
+}
+
+.mainHeader a:hover {
+    text-decoration: none
 }
 
 .cardWrapper {

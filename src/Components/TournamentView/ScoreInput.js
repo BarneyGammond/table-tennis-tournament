@@ -7,8 +7,8 @@ export default ({p1Name,p2Name,display,submitScore}) => {
         display: display,
     }
 
-    let [p1Score,setp1Score] = useState(0)
-    let [p2Score,setp2Score] = useState(0)
+    let [p1Score,setp1Score] = useState('')
+    let [p2Score,setp2Score] = useState('')
 
     const handleChange = (e,player) => {
 
@@ -24,9 +24,15 @@ export default ({p1Name,p2Name,display,submitScore}) => {
 
     const handleClick = () => {
 
-        p1Score >= 21 || p2Score >= 21 ?
-            submitScore(p1Score,p2Score) :
-            alert('One of the players must have scored at least 21 points to win')
+        const submit = () => {
+            submitScore(p1Score,p2Score);
+            setp1Score('');
+            setp2Score('');
+        }
+
+        p1Score >= 21 || p2Score >= 21 
+            ? submit()
+            : alert('One of the players must have scored at least 21 points to win')
 
     }
 
@@ -38,6 +44,7 @@ export default ({p1Name,p2Name,display,submitScore}) => {
                 <Form.Group>
                     <Form.Label className="text-light">{p1Name} Score</Form.Label>
                     <Form.Control 
+                        placeholder='0'
                         onChange={(e) => handleChange(e,'p1')}
                         value={p1Score}
                         type='number'>
@@ -46,6 +53,7 @@ export default ({p1Name,p2Name,display,submitScore}) => {
                 <Form.Group>
                     <Form.Label className="text-light">{p2Name} Score</Form.Label>
                     <Form.Control 
+                        placeholder='0'
                         onChange={(e) => handleChange(e,'p2')}
                         value={p2Score}
                         type='number'></Form.Control>

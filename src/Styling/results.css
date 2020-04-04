@@ -1,0 +1,15 @@
+.resultCard.container {
+
+    background-color: #FDFFFC;
+    border-radius: 1px;
+    width: 200px;
+    margin-bottom: 20px;
+    padding: 10px 5px;
+
+}
+
+.resultsWrapper {
+
+    padding: 20px 0;
+
+}

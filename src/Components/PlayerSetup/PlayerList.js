@@ -3,6 +3,8 @@ import {Container} from 'react-bootstrap'
 
 export default ({players}) => {
 
+    console.log(players)
+
     return (
 
         <Container>
@@ -11,7 +13,7 @@ export default ({players}) => {
 
                 { players.map((player,i) => (
 
-                    <li className="playerListName" key={i}><h4>{player}</h4></li>
+                    <li className="playerListName" key={i}><h4>{player.name}</h4></li>
 
                 ))}
 

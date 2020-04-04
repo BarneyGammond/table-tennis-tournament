@@ -2,6 +2,7 @@ import React ,{useState} from 'react'
 import PlayerForm from './PlayerForm'
 import PlayerList from  './PlayerList'
 import {Container,Row,Button} from 'react-bootstrap'
+import HallOfFame from './HallOfFame'
 
 const PlayerSetup = ({handleSubmit}) => {
 
@@ -9,11 +10,11 @@ const PlayerSetup = ({handleSubmit}) => {
 
     const [playerList, setPlayerList] = useState([])
 
-    const addPlayer = (playerName) => {
+    const addPlayer = (playerName,hof,hofID) => {
 
         // This add player function is passed down through props to the form
 
-        setPlayerList([...playerList,playerName])
+        setPlayerList([...playerList,{name:playerName,hof,hofID}])
 
     }
 
@@ -27,6 +28,7 @@ const PlayerSetup = ({handleSubmit}) => {
                     : null
                 }
             </Row>
+            <HallOfFame addPlayer={addPlayer} />
         </Container>
         
     )

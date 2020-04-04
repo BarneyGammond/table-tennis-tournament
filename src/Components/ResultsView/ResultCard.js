@@ -6,7 +6,7 @@ export default ({title,playerName}) => {
    return (
 
         <Container className="resultCard">
-            <h3>{title}</h3>
+            <h2>{title}</h2>
             <h3>{playerName}</h3> 
         </Container>
 
