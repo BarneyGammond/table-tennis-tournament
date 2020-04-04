@@ -1,13 +1,13 @@
 import history from '../history'
+import axios from './axios'
 
 const addPlayers = (state,{playerList}) => {
 
     // variable below is a formatted version of the player names for the state
 
-    const newPlayerList = playerList.map((player,i) => {
+    const newPlayerList = playerList.map((player,i) => (
 
-        return {
-
+        {
             id: i+1,
             name: player.name,
             wins: 0,
@@ -16,10 +16,9 @@ const addPlayers = (state,{playerList}) => {
             eliminated: false,
             hof: player.hof,
             hofID: player.hofID
-
         }
 
-    })
+    ))
 
     return {
 
@@ -232,8 +231,6 @@ const finalResults = state => {
         const winnerID = final.p1Score > final.p2Score ? final.p1.id : final.p2.id
         const loserID = final.p1Score < final.p2Score ? final.p1.id : final.p2.id
 
-        //Identifies the losers id based on the winners i
-
         return {
             ...state,
             winner: players.find(player => player.id === winnerID),
@@ -246,6 +243,43 @@ const finalResults = state => {
 
 }
 
+const hallOfFame = state => {
+
+    const {winner} = state
+    
+    console.log(winner)
+
+    const hallOfFamer = () => {
+
+        axios.get(`/players/${winner.hofID}`)
+        .then(({data}) => {
+            console.log(data)
+            axios.put(`/players/${winner.hofID}`, {
+                tournaments_won: data.tournaments_won + 1,
+                points_won: data.points_won + winner.pointsWon,
+                points_conceded: data.points_conceded + winner.pointsConceded
+            }).then((data) => {console.log(data)})
+        })
+
+    }
+
+    const rookie = () => {
+
+        axios.post('/players', {
+            name: winner.name,
+            tournaments_won: 1,
+            points_won: winner.pointsWon,
+            points_conceded: winner.pointsConceded
+        })
+
+    }
+
+    winner.hof ? hallOfFamer() : rookie()
+
+    return({...state})
+
+}
+
 
 const reducer = (state,action) => {
 
@@ -253,7 +287,7 @@ const reducer = (state,action) => {
 
         case "ADD_PLAYERS": return allocateMatches(shuffle(addPlayers(state,action)))
         case "RESULT_ENTRY": return (
-            finalResults(allocateMatches(matchesPlayed(updateResult(state,action))))
+            hallOfFame(finalResults(allocateMatches(matchesPlayed(updateResult(state,action)))))
         )
         default: return state
 

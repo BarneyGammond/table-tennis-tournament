@@ -6,7 +6,7 @@ export default ({winner,runnerUp}) => {
 
     return (
 
-        <Container>
+        <Container className="resultsWrapper">
             <ResultCard title='The Winner' playerName={winner.name} />
             <ResultCard title='Runner-up' playerName={runnerUp.name} />
         </Container>
