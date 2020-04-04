@@ -3,7 +3,7 @@ import axios from '../../Data/axios'
 import { Container } from 'react-bootstrap'
 import HallOfFameCard from './HallOfFameCard'
 
-export default () => {
+export default ({addPlayer}) => {
 
     const [apiData,setApiData] = useState([])
 
@@ -29,7 +29,7 @@ export default () => {
 
             { apiData.map((player,i) => (
 
-                <HallOfFameCard key={i} playerData={player}/>
+                <HallOfFameCard addPlayer={addPlayer} key={i} playerData={player}/>
 
             )) }
 

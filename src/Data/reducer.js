@@ -9,11 +9,13 @@ const addPlayers = (state,{playerList}) => {
         return {
 
             id: i+1,
-            name: player,
+            name: player.name,
             wins: 0,
             pointsWon: 0,
             pointsConceded: 0,
-            eliminated: false
+            eliminated: false,
+            hof: player.hof,
+            hofID: player.hofID
 
         }
 

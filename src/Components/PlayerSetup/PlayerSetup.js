@@ -10,11 +10,11 @@ const PlayerSetup = ({handleSubmit}) => {
 
     const [playerList, setPlayerList] = useState([])
 
-    const addPlayer = (playerName) => {
+    const addPlayer = (playerName,hof,hofID) => {
 
         // This add player function is passed down through props to the form
 
-        setPlayerList([...playerList,playerName])
+        setPlayerList([...playerList,{name:playerName,hof,hofID}])
 
     }
 
@@ -28,7 +28,7 @@ const PlayerSetup = ({handleSubmit}) => {
                     : null
                 }
             </Row>
-            <HallOfFame />
+            <HallOfFame addPlayer={addPlayer} />
         </Container>
         
     )
