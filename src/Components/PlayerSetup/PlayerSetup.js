@@ -2,6 +2,7 @@ import React ,{useState} from 'react'
 import PlayerForm from './PlayerForm'
 import PlayerList from  './PlayerList'
 import {Container,Row,Button} from 'react-bootstrap'
+import HallOfFame from './HallOfFame'
 
 const PlayerSetup = ({handleSubmit}) => {
 
@@ -27,6 +28,7 @@ const PlayerSetup = ({handleSubmit}) => {
                     : null
                 }
             </Row>
+            <HallOfFame />
         </Container>
         
     )
