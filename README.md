@@ -38,6 +38,8 @@ Future iterations will look to include:
 
 * Include more player accolades in the results
 
+* Implement a match tracker which follows the score and indicates who should be serving
+
 ## Author
 
 [Barney Gammond](https://github.com/BarneyGammond)
