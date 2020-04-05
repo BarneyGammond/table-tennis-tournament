@@ -2,7 +2,7 @@
 
 A production version of the app can be found [here](https://barneygammond.github.io/table-tennis-tournament/)
 
-A web app built using React and Redux which allows users to enter a list of players and then tracks the matches as the tournament is played out. A 'hall of fame' laravel backend can also be setup to keep track of past winners and add them to the tournament. 
+A web app built using React and Redux which allows users to enter a list of players and then tracks the matches as the tournament is played out. A ['hall of fame' laravel backend](https://github.com/BarneyGammond/table-tennis-hall-of-fame) can also be setup to keep track of past winners and add them to the tournament. 
 
 ## Run App Locally
 
