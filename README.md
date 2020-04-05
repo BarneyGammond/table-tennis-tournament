@@ -6,7 +6,9 @@ A web app built using React and Redux which allows users to enter a list of play
 
 ## Run App Locally
 
-1. Clone the repository with the following command <br />`git clone git@github.com:BarneyGammond/table-tennis-tournament.git <local folder name>`
+1. Clone the repository with the following command
+
+      `git clone git@github.com:BarneyGammond/table-tennis-tournament.git <local folder name>`
 
 2. Run `npm install` in the project repository to install the dependencies
 
