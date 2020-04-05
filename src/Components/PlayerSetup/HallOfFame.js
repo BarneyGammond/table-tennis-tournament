@@ -7,6 +7,8 @@ export default ({addPlayer}) => {
 
     const [apiData,setApiData] = useState([])
 
+    //Use effect allows a call to be made to the database for the hall of fame players
+
     useEffect(() => {
 
         
@@ -23,9 +25,11 @@ export default ({addPlayer}) => {
 
     console.log(apiData)
 
+    //Hall of fame players are then rendered out as cards
+
     return(
 
-        <Container>
+        <Container className="cardWrapper">
 
             { apiData.map((player,i) => (
 

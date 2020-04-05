@@ -5,6 +5,8 @@ export default ({players}) => {
 
     console.log(players)
 
+    //Renders a list of the players in PlayerSetup local state using array.map
+
     return (
 
         <Container>

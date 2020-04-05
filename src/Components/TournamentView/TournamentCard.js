@@ -2,6 +2,8 @@ import React , {useState} from 'react'
 import {Container} from 'react-bootstrap'
 import ScoreInput from './ScoreInput'
 
+//The tournament card on click displays the score input
+
 export default ({
     onWinnerClick,
     player1,

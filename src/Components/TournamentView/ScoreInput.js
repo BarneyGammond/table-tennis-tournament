@@ -3,6 +3,8 @@ import {Container,Form,Button}  from  'react-bootstrap'
 
 export default ({p1Name,p2Name,display,submitScore}) => {
 
+    //The score input when submitted calls the submit score prop which triggers the dispatch
+
     let styling = {
         display: display,
     }
@@ -14,8 +16,12 @@ export default ({p1Name,p2Name,display,submitScore}) => {
 
         let score = e.currentTarget.valueAsNumber
 
-        player === 'p1' ? setp1Score(score)
-            : setp2Score(score)
+        //This determines which score it is updating on change,
+        //may be more readable to break it into seperate functions
+
+        player === 'p1' ? 
+            setp1Score(score) : 
+            setp2Score(score)
 
         console.log(score);
         console.log(score)
@@ -29,6 +35,8 @@ export default ({p1Name,p2Name,display,submitScore}) => {
             setp1Score('');
             setp2Score('');
         }
+
+        //An alert is triggered if the score is not valid (further validation could be done here)
 
         p1Score >= 21 || p2Score >= 21 
             ? submit()

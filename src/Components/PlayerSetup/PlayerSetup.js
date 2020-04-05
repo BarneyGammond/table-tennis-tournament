@@ -18,6 +18,9 @@ const PlayerSetup = ({handleSubmit}) => {
 
     }
 
+    //Once all the players needed have been added to the list the start tournament button
+    //will move the user on to the tournament view and render the first matches
+
     return (
         <Container>
             <PlayerForm addPlayer={addPlayer} />

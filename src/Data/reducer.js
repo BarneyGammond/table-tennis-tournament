@@ -3,7 +3,7 @@ import axios from './axios'
 
 const addPlayers = (state,{playerList}) => {
 
-    // variable below is a formatted version of the player names for the state
+    // Maps out each player object for state from list of names
 
     const newPlayerList = playerList.map((player,i) => (
 
@@ -69,11 +69,16 @@ const allocateMatches = (state) => {
     const players = state.players
     let newRound = []
 
+    //Then finds all players that have not been eliminated
+
     let activePlayers = players.filter(player => player.eliminated === false)
 
     let x = 2
     let y = 0
     let result = 0
+
+    //The function below determines the qualifying games that need to be played if
+    //there is an irregular number of players
 
     let findExcess = (num) => {
     
@@ -93,14 +98,16 @@ const allocateMatches = (state) => {
     
     }
 
+    //If the function finds excess then the new round will include qualifiers
+
     let qualifiers = findExcess(activePlayers.length)
 
     console.log(`the number of active players is ${activePlayers.length}`)
     console.log(`the excess result is ${qualifiers}`)
 
-    //Checks that the players have not been eliminated
-
     const numOfMatches = qualifiers ? qualifiers : activePlayers.length/2
+
+    //The excess function or the number of playerds left then determines how many new games are created
 
     for (let i=0 ; i<numOfMatches ; i+=1) {
 
@@ -130,7 +137,7 @@ const allocateMatches = (state) => {
 
 const updateResult = (state,{matchIndex,roundIndex,p1Score,p2Score}) => {
 
-    //Below is the logic for changing the match played
+    //Below is the logic for changing the match to played and adding the scores
 
     let newRounds = [...state.rounds]
 
@@ -141,12 +148,7 @@ const updateResult = (state,{matchIndex,roundIndex,p1Score,p2Score}) => {
         p2Score
     }
 
-   /*  newRounds[roundIndex][matchIndex].played = true
-
-    newRounds[roundIndex][matchIndex].winner = winnerID
-
-    newRounds[roundIndex][matchIndex].p1Score = p1Score */
-    //Below is the logic for changing the player eliminated
+    //We then find the indexes of the winner and the loser in the players array
 
     let loserIndex = (p1Score < p2Score 
         ? state.players.findIndex(player => 
@@ -171,14 +173,16 @@ const updateResult = (state,{matchIndex,roundIndex,p1Score,p2Score}) => {
     console.log(`The winner index is ${winnerIndex}`)
     console.log(`The loser index is ${loserIndex}`)
     
+    //The loser is updated with eliminated and their points are also updated
+    //The winner receives an extra win and has their points updated
 
     let newPlayerList = [...state.players]
 
     newPlayerList[loserIndex] = {
         ...newPlayerList[loserIndex],
         eliminated: true,
-        pointsWon: newPlayerList[winnerIndex].pointsWon + p1Score < p2Score ? p1Score : p2Score,
-        pointsConceded: newPlayerList[winnerIndex].pointsConceded + p1Score > p2Score ? p1Score : p2Score
+        pointsWon: newPlayerList[winnerIndex].pointsWon + (p1Score < p2Score ? p1Score : p2Score),
+        pointsConceded: newPlayerList[winnerIndex].pointsConceded + (p1Score > p2Score ? p1Score : p2Score)
     }
     newPlayerList[winnerIndex] = {
         ...newPlayerList[winnerIndex],
@@ -205,6 +209,7 @@ const updateResult = (state,{matchIndex,roundIndex,p1Score,p2Score}) => {
 const matchesPlayed = state => {
 
     //Checks if all the matches in the round have been played
+    //If so it sets allMatchesPlayed to true so that a new round won't be triggered
 
     let round = state.rounds[0]
 
@@ -239,11 +244,15 @@ const finalResults = state => {
 
     }
 
+    //It will only return results if the tournament is complete
+
     return tournamentComplete ? tournamentResults() : state
 
 }
 
 const hallOfFame = state => {
+
+    //The functions below update the hall of fame stats
 
     const {winner} = state
     
@@ -273,6 +282,9 @@ const hallOfFame = state => {
         })
 
     }
+
+    //If the winner wsa already in the database then their stats are updated otherwise
+    //the new player is added
 
     winner.hof ? hallOfFamer() : rookie()
 

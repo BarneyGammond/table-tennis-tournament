@@ -6,6 +6,11 @@ export default ({rounds,handleResult,players}) => {
 
     const playerCount = players.length
 
+    //Each round is rendered whether complete or not
+
+    //Dependent on the number of matches in the round it will be given a different title
+    //such as qualifier, semi-final etc.
+
     return (
 
         <Container className="tournamentWrapper">

@@ -3,6 +3,9 @@ import {Form, Button, Container, Row} from 'react-bootstrap'
 
 export default ({addPlayer}) => {
 
+    //The name is typed in here and then saved in PlayerSetup.js local state through the
+    //addPlayer prop
+
     const [playerName,setPlayerName] = useState('')
 
     const handleChange = e => {

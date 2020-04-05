@@ -1,6 +1,8 @@
 import Tournament from './Tournament'
 import { connect } from 'react-redux'
 
+//The tournment view receives both the round and players
+
 const mapStateToProps = ({rounds,players}) => ({rounds,players})
 
 const mapDispatchToProps = dispatch => {

@@ -17,3 +17,18 @@
     margin: 10px 1.66%;
 
 }
+
+.hallOfFameWrapper {
+
+}
+
+.hallOfFameCard.container {
+
+    background-color: #FDFFFC;
+    border-radius: 1px;
+    width: 200px;
+    margin-bottom: 20px;
+    padding: 10px 5px;
+    text-align: center;
+
+}

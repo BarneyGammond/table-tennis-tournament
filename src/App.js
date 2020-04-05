@@ -14,15 +14,15 @@ function App() {
   return(
   
     <Router history={history}>
+      
       <Header />
 
-      <Route exact path='/'>
-        <PlayerSetup />
-      </Route>
+      <Route exact path='/' component={PlayerSetup} />
 
       <Route path='/tournament' component={Tournament} />
 
-      <Route exact path='/results' component={ResultsPage}/>  
+      <Route exact path='/results' component={ResultsPage}/> 
+
     </Router>
 
   )
