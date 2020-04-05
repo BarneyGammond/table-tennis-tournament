@@ -17,4 +17,14 @@ A web app built using React and Redux which allows users to enter a list of play
     * The page will reload if you make edits.
     * You will also see any lint errors in the console.
 
-## Technologies Used
+## Built With
+
+* React - Library used
+
+* Redux - Global state management
+
+* React-Bootstrap - Used for styling
+
+## Author
+
+[Barney Gammond](https://github.com/BarneyGammond)
