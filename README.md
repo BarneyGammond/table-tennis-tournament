@@ -27,6 +27,17 @@ A web app built using React and Redux which allows users to enter a list of play
 
 * React-Bootstrap - Used for styling
 
+## Roadmap
+
+Future iterations will look to include:
+
+
+* Further validation of input scores
+
+* Ability to set number of points to win
+
+* Include more player accolades in the results
+
 ## Author
 
 [Barney Gammond](https://github.com/BarneyGammond)
