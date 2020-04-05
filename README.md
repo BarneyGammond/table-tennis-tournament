@@ -10,7 +10,7 @@ A web app built using React and Redux which allows users to enter a list of play
 
 2. Run `npm install` in the project repository to install the dependencies
 
-3. Run `npm start` whch runs the app in development mode.
+3. Run `npm start` which runs the app in development mode.
 
 
 4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
